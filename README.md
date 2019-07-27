@@ -1,2 +1,2 @@
 # LpkAutoSell
-AutoSell plugin for PocketMine-MP
+AutoSell plugin for PocketMine-MP. Plugin đang dev ...
