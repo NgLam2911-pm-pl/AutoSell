@@ -1,2 +1,2 @@
 # LpkAutoSell
-AutoSell plugin for PocketMine-MP. Plugin đang dev ...
+AutoSell plugin for PocketMine-MP. Src file : Private :vvv
