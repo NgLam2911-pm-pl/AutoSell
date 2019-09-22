@@ -1,3 +1,4 @@
+[![HitCount](http://hits.dwyl.io/LamPocketVN/LpkAutoSell.svg)](http://hits.dwyl.io/LamPocketVN/LpkAutoSell)
 # LpkAutoSell
 AutoSell plugin for PocketMine-MP.
 # Permission
