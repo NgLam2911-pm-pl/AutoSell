@@ -19,13 +19,13 @@ class main extends PluginBase implements Listener
 	private $mode = [];
 	public function onEnable()
 	{
-        $this->getLogger()->info(TextFormat::GREEN . "Plugin đã chạy ! [Plugin by LamPocketVN]");
+        $this->getLogger()->info(TextFormat::GREEN . "Autosell Activated");
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
 		
     }
 	public function onDisable ()
 	{
-		$this->getLogger()->info(TextFormat::RED . "Plugin đã dừng !");
+		$this->getLogger()->info(TextFormat::RED . "Autosell Deactivated");
 	}
 	public function onJoin (PlayerJoinEvent $j)
 	{
@@ -40,12 +40,12 @@ class main extends PluginBase implements Listener
            }
            switch ($args[0]) {
                case "on":
-			       $sender->sendMessage("§l§b[§6AutoSell§b]§a Enable ");
+			       $sender->sendMessage("§l§b[§6AutoSell§b]§a Enabled ");
 				   $this->mode[$sender->getName()] = "on";
 				   break;
 
                case "off":
-			       $sender->sendMessage("§l§b[§6AutoSell§b]§4 Disable "); 
+			       $sender->sendMessage("§l§b[§6AutoSell§b]§4 Disabled "); 
                    $this->mode[$sender->getName()] = "off";
 				   break;
                default :
