@@ -11,21 +11,19 @@ use pocketmine\event\player\PlayerQuitEvent;
 use pocketmine\event\player\PlayerJoinEvent;
 use pocketmine\event\block\BlockBreakEvent;
 use pocketmine\utils\TextFormat;
-use pocketmine\utils\config;
 
 class main extends PluginBase implements Listener
 {
-	private $config;
 	private $mode = [];
 	public function onEnable()
 	{
-        $this->getLogger()->info(TextFormat::GREEN . "Plugin đã chạy ! [Plugin by LamPocketVN]");
+        $this->getLogger()->info(TextFormat::GREEN . "Plugin is running ! [Plugin by LamPocketVN]");
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
 		
     }
 	public function onDisable ()
 	{
-		$this->getLogger()->info(TextFormat::RED . "Plugin đã dừng !");
+		$this->getLogger()->info(TextFormat::RED . "Plugin stoped !");
 	}
 	public function onJoin (PlayerJoinEvent $j)
 	{
@@ -56,13 +54,7 @@ class main extends PluginBase implements Listener
 
        return true;
    }
-    public function handles() : array {
-		return [
-			BlockBreakEvent::class => "handleBlockBreak",
-			PlayerQuitEvent::class => "handlePlayerQuit",
-		];
-	}
-    public function handleBlockBreak(BlockBreakEvent $event) : void {
+    public function onBreak(BlockBreakEvent $event) : void {
 		$player = $event->getPlayer();
 		foreach($event->getDrops() as $drop) {
 			if(!$player->getInventory()->canAddItem($drop)) 
