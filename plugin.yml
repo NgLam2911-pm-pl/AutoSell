@@ -2,13 +2,13 @@ name: LpkAutoSell
 main: LamPocketVN\AutoSell\main
 version: 0.0.2
 api: [3.0.0, 3.9.0, 4.0.0]
-author: LamPocketVN
+author: LamPocketVN/esh123cookie
 description: Auto-Sell plugin
 depend: 
 - SellAll
 commands:
   autosell:
-    description: "Enable or disable autosell mode !"
+    description: "§b§lEnable or disable autosell"
     permission: lpkas.command
 permissions:
   lpkas.command:
