@@ -17,13 +17,13 @@ class main extends PluginBase implements Listener
 	private $mode = [];
 	public function onEnable()
 	{
-        $this->getLogger()->info(TextFormat::GREEN . "Plugin is running ! [Plugin by LamPocketVN]");
+        $this->getLogger()->info(TextFormat::GREEN . "Plugin is enabled! [Plugin by LamPocketVN/edited by esh123cookie]");
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
 		
     }
 	public function onDisable ()
 	{
-		$this->getLogger()->info(TextFormat::RED . "Plugin stoped !");
+		$this->getLogger()->info(TextFormat::RED . "Plugin has stopped !");
 	}
 	public function onJoin (PlayerJoinEvent $j)
 	{
@@ -33,17 +33,17 @@ class main extends PluginBase implements Listener
     public function onCommand(CommandSender $sender, Command $cmd, string $label, array $args): bool{
        if (strtolower($cmd->getName()) == "autosell") {
            if(!isset($args[0])){
-               $sender->sendMessage("§l§b[§6AutoSell§b]§a Usage: /autosell <on|off>");
+               $sender->sendMessage("§l§7[§3AutoSell§7]§a Usage: /autosell <on|off>");
                return false;
            }
            switch ($args[0]) {
                case "on":
-			       $sender->sendMessage("§l§b[§6AutoSell§b]§a Enable ");
+			       $sender->sendMessage("§l§7[§3AutoSell§7]§a Autosell enabled ");
 				   $this->mode[$sender->getName()] = "on";
 				   break;
 
                case "off":
-			       $sender->sendMessage("§l§b[§6AutoSell§b]§4 Disable "); 
+			       $sender->sendMessage("§l§7[§3AutoSell§7]§c Autosell disabled "); 
                    $this->mode[$sender->getName()] = "off";
 				   break;
                default :
@@ -62,7 +62,7 @@ class main extends PluginBase implements Listener
 				if ($this->mode[$player->getName()] == "on") 
 				{
 				$this->getServer()->dispatchCommand($player, "rca sell inv");
-				$player->sendMessage("§l§b[§6AutoSell§b]§a Automatically sold items!");
+				$player->sendMessage("§l§b[§6AutoSell§b]§a Automatically sold items in your inv!");
 				}
 				break;
 			}
