@@ -57,11 +57,10 @@ class main extends PluginBase implements Listener
     public function onBreak(BlockBreakEvent $event) : void {
 		$player = $event->getPlayer();
 		foreach($event->getDrops() as $drop) {
-			if(!$player->getInventory()->canAddItem($drop)) 
 			{
 				if ($this->mode[$player->getName()] == "on") 
 				{
-				$this->getServer()->dispatchCommand($player, "rca sell inv");
+				$this->getServer()->dispatchCommand($player, "sell i");
 				$player->sendMessage("§l§b[§6AutoSell§b]§a Automatically sold items in your inv!");
 				}
 				break;
