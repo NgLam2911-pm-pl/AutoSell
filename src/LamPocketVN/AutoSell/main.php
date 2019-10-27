@@ -17,13 +17,13 @@ class main extends PluginBase implements Listener
 	private $mode = [];
 	public function onEnable()
 	{
-        $this->getLogger()->info(TextFormat::GREEN . "Plugin is running ! [Plugin by LamPocketVN]");
+        $this->getLogger()->info(TextFormat::GREEN . "Plugin is running ! [Plugin by LamPocketVN/esh123unicorn]");
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
 		
     }
 	public function onDisable ()
 	{
-		$this->getLogger()->info(TextFormat::RED . "Plugin stoped !");
+		$this->getLogger()->info(TextFormat::RED . "Plugin stopped !");
 	}
 	public function onJoin (PlayerJoinEvent $j)
 	{
@@ -33,21 +33,21 @@ class main extends PluginBase implements Listener
     public function onCommand(CommandSender $sender, Command $cmd, string $label, array $args): bool{
        if (strtolower($cmd->getName()) == "autosell") {
            if(!isset($args[0])){
-               $sender->sendMessage("§l§b[§6AutoSell§b]§a Usage: /autosell <on|off>");
+               $sender->sendMessage("§3[§bAutoSell§3]§a Usage: §b/autosell §a<on§f|§coff>");
                return false;
            }
            switch ($args[0]) {
                case "on":
-			       $sender->sendMessage("§l§b[§6AutoSell§b]§a Enable ");
+			       $sender->sendMessage("§l§3[§bAutoSell§3]§a Enable ");
 				   $this->mode[$sender->getName()] = "on";
 				   break;
 
                case "off":
-			       $sender->sendMessage("§l§b[§6AutoSell§b]§4 Disable "); 
+			       $sender->sendMessage("§l§3[§bAutoSell§3]§a Disable "); 
                    $this->mode[$sender->getName()] = "off";
 				   break;
                default :
-                   $sender->sendMessage("§l§b[§6AutoSell§b]§a Usage: /autosell <on|off>");
+                   $sender->sendMessage("§3[§bAutoSell§3]§a Usage: /autosell <on|off>");
                    break;
            }
        }
@@ -57,12 +57,11 @@ class main extends PluginBase implements Listener
     public function onBreak(BlockBreakEvent $event) : void {
 		$player = $event->getPlayer();
 		foreach($event->getDrops() as $drop) {
-			if(!$player->getInventory()->canAddItem($drop)) 
 			{
 				if ($this->mode[$player->getName()] == "on") 
 				{
-				$this->getServer()->dispatchCommand($player, "sell all");
-				$player->sendMessage("§l§b[§6AutoSell§b]§a Automatically sold items!");
+				$this->getServer()->dispatchCommand($player, "rca sell inv");
+				$player->sendMessage("§3[§bAutoSell§3]§a Automatically sold items!");
 				}
 				break;
 			}
