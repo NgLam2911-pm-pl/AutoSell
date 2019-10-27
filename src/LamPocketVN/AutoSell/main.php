@@ -61,7 +61,7 @@ class main extends PluginBase implements Listener
 				if ($this->mode[$player->getName()] == "on") 
 				{
 				$this->getServer()->dispatchCommand($player, "sell inv");
-				$player->sendMessage("§3[§bAutoSell§3]§a Automatically sold items!");
+				$player->sendMessage("§3[§bAutoSell§3]§a sold all items");
 				}
 				break;
 			}
