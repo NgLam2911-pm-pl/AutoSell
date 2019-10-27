@@ -5,3 +5,5 @@ A plugin auto sell items while inventory full.
  * lpksell.command (default: true)
 # Requied plugin
  * PHP_Sell
+  * Discord bigbozzlmao#4035
+ * I actually own a server so if you want the ip and port dm me
