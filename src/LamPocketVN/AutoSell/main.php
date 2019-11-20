@@ -23,7 +23,7 @@ class main extends PluginBase implements Listener
     }
 	public function onDisable ()
 	{
-		$this->getLogger()->info(TextFormat::RED . "Plugin stoped !");
+		$this->getLogger()->info(TextFormat::RED . "Plugin stopped !");
 	}
 	public function onJoin (PlayerJoinEvent $j)
 	{
@@ -38,12 +38,12 @@ class main extends PluginBase implements Listener
            }
            switch ($args[0]) {
                case "on":
-			       $sender->sendMessage("§l§b[§6AutoSell§b]§a Enable ");
+			       $sender->sendMessage("§l§b[§6AutoSell§b]§a Enabled ");
 				   $this->mode[$sender->getName()] = "on";
 				   break;
 
                case "off":
-			       $sender->sendMessage("§l§b[§6AutoSell§b]§4 Disable "); 
+			       $sender->sendMessage("§l§b[§6AutoSell§b]§4 Disabled "); 
                    $this->mode[$sender->getName()] = "off";
 				   break;
                default :
