@@ -11,65 +11,103 @@ use pocketmine\event\player\PlayerQuitEvent;
 use pocketmine\event\player\PlayerJoinEvent;
 use pocketmine\event\block\BlockBreakEvent;
 use pocketmine\utils\TextFormat;
+use pocketmine\utils\config;
 
-class main extends PluginBase implements Listener
+class Main extends PluginBase implements Listener
 {
-	private $mode = [];
+	public $config;
+	
+	public $mode = [];
+	
 	public function onEnable()
 	{
-        $this->getLogger()->info(TextFormat::GREEN . "Plugin is running ! [Plugin by LamPocketVN]");
+		$this->saveResource("setting.yml");
+		$this->config = new Config($this->getDataFolder() . "setting.yml", Config::YAML);
+		$this->set = $this->config->getAll();
+		
+        $this->getLogger()->info(TextFormat::GREEN . "Plugin enabled ! [Plugin by LamPocketVN]");
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
 		
     }
+	
 	public function onDisable ()
 	{
-		$this->getLogger()->info(TextFormat::RED . "Plugin stopped !");
+		$this->getLogger()->info(TextFormat::RED . "Plugin disabled !");
 	}
-	public function onJoin (PlayerJoinEvent $j)
+	
+	
+    public function onCommand(CommandSender $sender, Command $cmd, string $label, array $args): bool
 	{
-	    $player = $j->getPlayer()->getName();
-		$this->mode[$player] = "off";
-	}
-    public function onCommand(CommandSender $sender, Command $cmd, string $label, array $args): bool{
-       if (strtolower($cmd->getName()) == "autosell") {
-           if(!isset($args[0])){
-               $sender->sendMessage("§l§b[§6AutoSell§b]§a Usage: /autosell <on|off>");
+		if (strtolower($cmd->getName()) == "autosell") 
+	   {
+           if(!isset($args[0]))
+		   {
+               $sender->sendMessage($this->set["usage"]);
                return false;
            }
-           switch ($args[0]) {
-               case "on":
-			       $sender->sendMessage("§l§b[§6AutoSell§b]§a Enabled ");
-				   $this->mode[$sender->getName()] = "on";
+           switch ($args[0]) 
+		   {
+			   case "on":
+			       if (!$this->isAutoSell($sender))
+				   {
+					   $sender->sendMessage($this->set["enabled"]);
+				       $this->mode[$sender->getName()] = "on";
+				   }
+			       else $sender->sendMessage($this->set["has-enabled"]);
 				   break;
-
                case "off":
-			       $sender->sendMessage("§l§b[§6AutoSell§b]§4 Disabled "); 
-                   $this->mode[$sender->getName()] = "off";
+			       if ($this->isAutoSell($sender))
+				   {
+					   $sender->sendMessage($this->set["disabled"]); 
+                       $this->mode[$sender->getName()] = "off";
+				   }
+			       else $sender->sendMessage($this->set["has-disabled"]);
 				   break;
                default :
-                   $sender->sendMessage("§l§b[§6AutoSell§b]§a Usage: /autosell <on|off>");
+                   $sender->sendMessage($this->set["usage"]);
                    break;
            }
        }
 
        return true;
    }
-    public function onBreak(BlockBreakEvent $event) : void {
+//============================== Event Listener ==============================
+    public function onBreak(BlockBreakEvent $event)
+	{
 		$player = $event->getPlayer();
 		foreach($event->getDrops() as $drop) {
 			if(!$player->getInventory()->canAddItem($drop)) 
 			{
-				if ($this->mode[$player->getName()] == "on") 
+				if ($this->isAutoSell($player))
 				{
-				$this->getServer()->dispatchCommand($player, "sell all");
-				$player->sendMessage("§l§b[§6AutoSell§b]§a Automatically sold items!");
+					$this->getServer()->dispatchCommand($player, $this->set["sellcmd"]);
+					$player->sendMessage($this->set["sell"]);
 				}
 				break;
 			}
 		}
 	}
-    public function onQuit(PlayerQuitEvent $e){
+	
+	public function onJoin (PlayerJoinEvent $j)
+	{
+	    $player = $j->getPlayer()->getName();
+		$this->mode[$player] = "off";
+	}
+	
+    public function onQuit(PlayerQuitEvent $e)
+	{
        $a = "autosell off";
        $this->getServer()->dispatchCommand($e->getPlayer(),$a);
     }
+//=============================== API ========================================
+
+	public function isAutoSell($player): bool
+	{
+		if ($this->mode[$player->getName()] === "on") 
+		{
+			return true;
+		}
+		else 
+			return false;
+	}
 }
