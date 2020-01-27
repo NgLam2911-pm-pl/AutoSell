@@ -37,6 +37,11 @@ class AutoSell extends PluginBase implements Listener
 	
     public function onCommand(CommandSender $sender, Command $cmd, string $label, array $args): bool
 	{
+		if (!$sender instanceof Player)
+		{
+			$sender->sendMessage("Please use in game !");
+			return true;
+		}
 		if (strtolower($cmd->getName()) == "autosell") 
 	   {
            if(!isset($args[0]))
