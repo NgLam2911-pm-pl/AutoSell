@@ -13,7 +13,7 @@ use pocketmine\event\block\BlockBreakEvent;
 use pocketmine\utils\TextFormat;
 use pocketmine\utils\config;
 
-class Main extends PluginBase implements Listener
+class AutoSell extends PluginBase implements Listener
 {
 	public $config;
 	
