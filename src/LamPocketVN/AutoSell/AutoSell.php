@@ -26,8 +26,7 @@ class AutoSell extends PluginBase implements Listener
 		$this->set = $this->config->getAll();
 		
         $this->getLogger()->info(TextFormat::GREEN . "Plugin enabled ! [Plugin by LamPocketVN]");
-        $this->getServer()->getPluginManager()->registerEvents($this, $this);
-		
+        $this->getServer()->getPluginManager()->registerEvents($this, $this);	
     }
 	
 	public function onDisable ()
@@ -88,9 +87,9 @@ class AutoSell extends PluginBase implements Listener
 		}
 	}
 	
-	public function onJoin (PlayerJoinEvent $j)
+	public function onJoin (PlayerJoinEvent $event)
 	{
-	    $player = $j->getPlayer()->getName();
+	    $player = $event->getPlayer()->getName();
 		$this->mode[$player] = "off";
 	}
 //=============================== API ========================================
