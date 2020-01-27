@@ -4,7 +4,7 @@
 usage: "§l§b[§6AutoSell§b]§a Usage: /autosell <on|off>"
 enabled: "§l§b[§6AutoSell§b]§a Enabled"
 disabled: "§l§b[§6AutoSell§b]§4 Disabled"
-has-enabled:"§l§b[§6AutoSell§b]§4 Already enabled !"
+has-enabled: "§l§b[§6AutoSell§b]§4 Already enabled !"
 has-disabled: "§l§b[§6AutoSell§b]§4 Already disabled !"
 sell: "§l§b[§6AutoSell§b]§a Automatically sold items!"
 
