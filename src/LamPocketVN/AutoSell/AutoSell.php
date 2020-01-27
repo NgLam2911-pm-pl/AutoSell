@@ -93,12 +93,6 @@ class Main extends PluginBase implements Listener
 	    $player = $j->getPlayer()->getName();
 		$this->mode[$player] = "off";
 	}
-	
-    public function onQuit(PlayerQuitEvent $e)
-	{
-       $a = "autosell off";
-       $this->getServer()->dispatchCommand($e->getPlayer(),$a);
-    }
 //=============================== API ========================================
 
 	public function isAutoSell($player): bool
