@@ -19,19 +19,23 @@ class AutoSell extends PluginBase implements Listener
 	
 	public $mode = [];
 	
-	public function onEnable()
+	public function onEnable() : void
 	{
 		$this->saveResource("setting.yml");
 		$this->config = new Config($this->getDataFolder() . "setting.yml", Config::YAML);
 		$this->set = $this->config->getAll();
+		//Checking dependency if Sell is loading or not
+		if($this->getServer()->getPluginManager()->getPlugin("Sell") == null){
+			$this->getLogger()->info(TextFormat::RED . "Missing dependecy: Sell");
+		}
 		
-        $this->getLogger()->info(TextFormat::GREEN . "Plugin enabled ! [Plugin by LamPocketVN]");
-        $this->getServer()->getPluginManager()->registerEvents($this, $this);	
+                $this->getLogger()->info(TextFormat::GREEN . "Plugin enabled! [Plugin by LamPocketVN]");
+                $this->getServer()->getPluginManager()->registerEvents($this, $this);	
     }
 	
-	public function onDisable ()
+	public function onDisable() : void
 	{
-		$this->getLogger()->info(TextFormat::RED . "Plugin disabled !");
+		$this->getLogger()->info(TextFormat::RED . "Plugin disabled!");
 	}
 	
 	
@@ -39,7 +43,7 @@ class AutoSell extends PluginBase implements Listener
 	{
 		if (!$sender instanceof Player)
 		{
-			$sender->sendMessage("Please use in game !");
+			$sender->sendMessage("Please use this command in game !");
 			return true;
 		}
 		if (strtolower($cmd->getName()) == "autosell") 
@@ -75,7 +79,14 @@ class AutoSell extends PluginBase implements Listener
 
        return true;
    }
-//============================== Event Listener ==============================
+	
+/*============================== Event Listener ==============================*/
+	
+    /**
+     * @param BlockBreakEvent $event
+     * @priority HIGH
+     */
+	
     public function onBreak(BlockBreakEvent $event)
 	{
 		$player = $event->getPlayer();
@@ -99,13 +110,14 @@ class AutoSell extends PluginBase implements Listener
 	}
 //=============================== API ========================================
 
-	public function isAutoSell($player): bool
+	public function isAutoSell(Player $player): bool
 	{
 		if ($this->mode[$player->getName()] === "on") 
 		{
 			return true;
 		}
-		else 
+		else{
 			return false;
+		} 
 	}
 }
