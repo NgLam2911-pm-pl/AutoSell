@@ -1,6 +1,6 @@
 name: AutoSell
 main: LamPocketVN\AutoSell\AutoSell
-version: 0.1.lpk
+version: 0.2.lpk
 api: [3.0.0, 4.0.0]
 authors: [LamPocketVN, Adam1609]
 description: Auto-Sell plugin
