@@ -24,10 +24,6 @@ class AutoSell extends PluginBase implements Listener
 		$this->saveResource("setting.yml");
 		$this->config = new Config($this->getDataFolder() . "setting.yml", Config::YAML);
 		$this->set = $this->config->getAll();
-		//Checking dependency if Sell is loading or not
-		if($this->getServer()->getPluginManager()->getPlugin("Sell") == null){
-			$this->getLogger()->info(TextFormat::RED . "Missing dependecy: Sell");
-		}
 		
                 $this->getLogger()->info(TextFormat::GREEN . "Plugin enabled! [Plugin by LamPocketVN]");
                 $this->getServer()->getPluginManager()->registerEvents($this, $this);	
