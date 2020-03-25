@@ -10,4 +10,4 @@ commands:
     permission: autosell.command
 permissions:
   autosell.command:
-    default: true
+    default: op
