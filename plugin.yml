@@ -1,15 +1,15 @@
 name: AutoSell
-main: LamPocketVN\AutoSell\main
-version: 0.0.3.lpk
-api: [3.0.0, 4.0.0]
+main: LamPocketVN\AutoSell\AutoSell
+version: 0.1.lpk
+api: [3.0.0, 3.9.0, 4.0.0]
 author: LamPocketVN
 description: Auto-Sell plugin
 depend: 
-- Sell
+- PHP-Sell
 commands:
   autosell:
-    description: "Enable or disable autosell mode !"
-    permission: lpkas.command
+    description: "Sells the item in your hand or all of your inventory's contents"
+    permission: autosell.command
 permissions:
-  lpkas.command:
+  autosell.command:
     default: true
