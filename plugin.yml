@@ -5,7 +5,7 @@ api: [3.0.0, 4.0.0]
 author: LamPocketVN
 description: Auto-Sell plugin
 depend: 
-- PHP-Sell
+- Sell
 commands:
   autosell:
     description: "Enable or disable autosell mode !"
