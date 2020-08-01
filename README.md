@@ -1,5 +1,5 @@
 [![HitCount](http://hits.dwyl.io/LamPocketVN/AutoSell.svg)](http://hits.dwyl.io/LamPocketVN/AutoSell)
-# LpkAutoSell
+# AutoSell
 A plugin auto sell items while inventory full.
 # Permission
  * lpksell.command (default: true)
